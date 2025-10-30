@@ -1,0 +1,31 @@
+{
+  "name": "pw-boilerplate",
+  "version": "1.0.0",
+  "description": "A boiler-plate test automation framework using Playwright",
+  "main": "index.js",
+  "scripts": {
+    "format": "npx prettier --write .",
+    "test:headless": "npx playwright test",
+    "set-base-images:": "npx playwright test --update-snapshots",
+    "test:headed": "npx playwright test --headed",
+    "test:single:thread": "npx playwright test --headed --workers=1",
+    "open:report": "npx playwright show-report",
+    "test:filter-by-tag": "npx playwright test --grep @smoke",
+    "test:project:firefox": "npx playwright test --headed --project firefox",
+    "test:ten:times": "npx playwright test --repeat-each=10",
+    "run:last:failed:tests": "npx playwright test --last-failed",
+    "open:user-interface": "npx playwright test --ui",
+    "open:trace": "npx playwright show-trace test-results/test-1-test-Google-Chrome/trace.zip",
+    "record": "npx playwright codegen https://www.saucedemo.com/"
+  },
+  "author": "Simon Levente-Attila",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.9.2",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.2.3",
+    "prettier": "^3.6.2"
+  }
+}
