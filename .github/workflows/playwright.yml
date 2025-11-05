@@ -22,7 +22,7 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         env:
-          USERNAME: ${{ secrets.USERNAME }}
+          USERNAME: ${{ secrets.USER_NAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}

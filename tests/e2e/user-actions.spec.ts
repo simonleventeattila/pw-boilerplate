@@ -1,4 +1,5 @@
 import { test, expect } from '../../base';
+require('dotenv').config()
 
 test.describe('User actions tests', () => {
   test.beforeEach(async ({ page, loginPage }) => {

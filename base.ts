@@ -2,6 +2,7 @@ import { test as baseTest } from '@playwright/test';
 import { LoginPage } from './pages/login-page';
 import { InventoryPage } from './pages/inventory-page';
 import { CheckoutPage } from './pages/checkout-page';
+require('dotenv').config()
 
 type MyFixtures = {
   loginPage: LoginPage;
@@ -11,10 +12,10 @@ type MyFixtures = {
 
 export const test = baseTest.extend<MyFixtures>({
   loginPage: async ({ page }, use) => {
-  const USERNAME = process.env.TEST_USERNAME;
-const PASSWORD = process.env.TEST_PASSWORD;
+const USER_NAME = process.env.USER_NAME;
+const PASSWORD = process.env.PASSWORD;
 
-if (!USERNAME || !PASSWORD) {
+if (!USER_NAME || !PASSWORD) {
   throw new Error('Missing TEST_USERNAME or TEST_PASSWORD environment variable(s). Set them in GitHub repo secrets.');
 }  
     await use(new LoginPage(page));
