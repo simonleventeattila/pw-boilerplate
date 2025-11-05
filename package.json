@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "format": "npx prettier --write .",
-    "test": "npx cross-env BASE_URL='https://www.saucedemo.com/' playwright test",
+    "test": "npx cross-env BASE_URL='https://www.saucedemo.com/' playwright test --headed",
     "set-base-images:": "npx playwright test --update-snapshots",
     "test:headed": "npx playwright test --headed",
     "test:single:thread": "npx playwright test --headed --workers=1",
@@ -25,6 +25,7 @@
     "@faker-js/faker": "^10.1.0",
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.9.2",
+    "chance": "^1.1.13",
     "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
     "prettier": "^3.6.2"

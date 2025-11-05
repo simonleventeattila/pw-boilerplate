@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 import 'dotenv/config';
-import { test, expect } from '../base';
+const chance = require('chance').Chance();
 
 export class CheckoutPage {
   page: Page;
@@ -18,9 +18,9 @@ export class CheckoutPage {
   }
 
   async doCheckout(
-    firstName: string = 'FirstName',
-    lastName: string = 'lastName',
-    zipCode: string = '12345'
+    firstName: string = chance.first(),
+    lastName: string = chance.last(),
+    zipCode: string =  chance.zip()
   ) {
     await this.firstNameField.fill(firstName);
     await this.lastNameField.fill(lastName);
