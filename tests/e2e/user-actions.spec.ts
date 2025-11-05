@@ -1,4 +1,4 @@
-import { test, expect } from '../base';
+import { test, expect } from '../../base';
 
 const baseUrl = 'https://www.saucedemo.com/';
 
