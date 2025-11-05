@@ -1,5 +1,5 @@
 import { Locator, Page } from '@playwright/test';
-import 'dotenv/config';
+
 
 export class InventoryPage {
   page: Page;

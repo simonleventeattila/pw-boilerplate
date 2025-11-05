@@ -1,5 +1,4 @@
 import { Locator, Page } from '@playwright/test';
-import 'dotenv/config';
 const chance = require('chance').Chance();
 
 export class CheckoutPage {
