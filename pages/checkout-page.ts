@@ -20,7 +20,7 @@ export class CheckoutPage {
   async doCheckout(
     firstName: string = chance.first(),
     lastName: string = chance.last(),
-    zipCode: string =  chance.zip()
+    zipCode: string = chance.zip()
   ) {
     await this.firstNameField.fill(firstName);
     await this.lastNameField.fill(lastName);

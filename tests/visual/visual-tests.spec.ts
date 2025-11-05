@@ -8,6 +8,6 @@ test.describe('Test pages visually (screenshot matching)', () => {
 
   test('Test product page visually', async ({ page }) => {
     await expect(page.locator('[data-test="title"]')).toContainText('Products');
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({ fullPage: true });
   });
 });

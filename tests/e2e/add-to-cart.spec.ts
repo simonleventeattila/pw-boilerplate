@@ -6,7 +6,7 @@ test.describe('Add products to cart tests', () => {
     await loginPage.doLogin();
   });
 
-  test.only('Add to cart test', async ({ page, inventoryPage }) => {
+  test('Add to cart test', async ({ page, inventoryPage }) => {
     await expect(page.locator('[data-test="title"]')).toContainText('Products');
     await inventoryPage.addItemsToBasket();
     await expect(page.locator('[data-test="remove-sauce-labs-bike-light"]')).toContainText(
