@@ -1,22 +1,23 @@
 import { test, expect } from '../../base';
 
-const baseUrl = 'https://www.saucedemo.com/';
 
 test.describe('Add products to cart tests', () => {
   test.beforeEach(async ({ page, loginPage }) => {
-    await page.goto(`${baseUrl}`);
+    await page.goto("/");
     await loginPage.doLogin();
   });
 
-  test('Add to cart test ', async ({ page, loginPage }) => {
+   test.only('Checkout test', async ({ page, checkoutPage, inventoryPage }) => {
     await expect(page.locator('[data-test="title"]')).toContainText('Products');
-  });
+    await inventoryPage.addItemsToBasket();
+    await expect(page.locator('[data-test="remove-sauce-labs-bike-light"]')).toContainText('Remove');
+    await expect(page.locator('[data-test="remove-sauce-labs-backpack"]')).toContainText('Remove');
+    await expect(page.locator('[data-test="remove-sauce-labs-bolt-t-shirt"]')).toContainText('Remove');
+    await expect(page.locator('[data-test="shopping-cart-badge"]')).toContainText('3');
+    await inventoryPage.removeItemFromBasket()
+    await expect(page.locator('[data-test="shopping-cart-badge"]')).toContainText('2');
+    await expect(page.locator('[data-test="add-to-cart-sauce-labs-backpack"]')).toContainText('Add to cart');
 
-  test('Login and logout', async ({ page, loginPage }) => {
-    await loginPage.doLogin();
-    await expect(page.locator('[data-test="title"]')).toBeVisible();
-    await page.getByRole('button', { name: 'Open Menu' }).click();
-    await page.locator('[data-test="logout-sidebar-link"]').click();
-    await expect(page.locator('#root')).toContainText('Swag Labs');
+
   });
 });

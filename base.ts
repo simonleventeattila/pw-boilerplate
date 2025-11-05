@@ -1,8 +1,12 @@
 import { test as baseTest } from '@playwright/test';
 import { LoginPage } from './pages/login-page';
+import { InventoryPage } from './pages/inventory-page';
+import { CheckoutPage } from './pages/checkout-page';
 
 type MyFixtures = {
   loginPage: LoginPage;
+  checkoutPage: CheckoutPage;
+  inventoryPage: InventoryPage;
   // navPage: NavPage;
   // registerPage: RegisterPage;
 };
@@ -11,12 +15,12 @@ export const test = baseTest.extend<MyFixtures>({
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
   },
-  // navPage: async ({page}, use) => {
-  //     await use (new NavPage(page));
-  // },
-  // registerPage: async ({page}, use) => {
-  //     await use (new RegisterPage(page));
-  // }
+  checkoutPage: async ({page}, use) => {
+      await use (new CheckoutPage(page));
+  },
+  inventoryPage: async ({page}, use) => {
+      await use (new InventoryPage(page));
+  }
 });
 
 export { expect } from '@playwright/test';
