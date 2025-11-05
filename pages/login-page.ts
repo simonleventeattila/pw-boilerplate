@@ -14,9 +14,10 @@ export class LoginPage {
     this.submitLoginBtn = page.locator('[data-test="login-button"]');
   }
 
-  async doLogin(userName: string = `${process.env.USER_NAME}`, password: string = `${process.env.PASSWORD}`) {
-    console.log(`Logging in with user: ${userName}`);
-    console.log(`Using password: ${password}`);
+  async doLogin(
+    userName: string = `${process.env.USER_NAME}`,
+    password: string = `${process.env.PASSWORD}`
+  ) {
     await this.userNameField.fill(userName);
     await this.pswField.fill(password);
     await this.submitLoginBtn.click();

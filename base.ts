@@ -3,7 +3,6 @@ import { LoginPage } from './pages/login-page';
 import { InventoryPage } from './pages/inventory-page';
 import { CheckoutPage } from './pages/checkout-page';
 
-
 type MyFixtures = {
   loginPage: LoginPage;
   checkoutPage: CheckoutPage;
