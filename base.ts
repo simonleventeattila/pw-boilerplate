@@ -7,12 +7,16 @@ type MyFixtures = {
   loginPage: LoginPage;
   checkoutPage: CheckoutPage;
   inventoryPage: InventoryPage;
-  // navPage: NavPage;
-  // registerPage: RegisterPage;
 };
 
 export const test = baseTest.extend<MyFixtures>({
   loginPage: async ({ page }, use) => {
+  const USERNAME = process.env.TEST_USERNAME;
+const PASSWORD = process.env.TEST_PASSWORD;
+
+if (!USERNAME || !PASSWORD) {
+  throw new Error('Missing TEST_USERNAME or TEST_PASSWORD environment variable(s). Set them in GitHub repo secrets.');
+}  
     await use(new LoginPage(page));
   },
   checkoutPage: async ({ page }, use) => {
