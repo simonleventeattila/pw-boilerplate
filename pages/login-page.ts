@@ -1,7 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 import 'dotenv/config';
 
-
 export class LoginPage {
   page: Page;
   userNameField: Locator;

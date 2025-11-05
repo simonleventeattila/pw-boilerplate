@@ -1,9 +1,8 @@
 import { test, expect } from '../../base';
 
-
 test.describe('User actions tests', () => {
   test.beforeEach(async ({ page, loginPage }) => {
-    await page.goto("/");
+    await page.goto('/');
     await loginPage.doLogin();
   });
 

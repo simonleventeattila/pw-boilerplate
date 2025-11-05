@@ -17,7 +17,11 @@ export class CheckoutPage {
     this.continueBtn = page.locator('[data-test="continue"]');
   }
 
-  async doCheckout(firstName: string = "FirstName", lastName: string = "lastName", zipCode: string = "12345") {
+  async doCheckout(
+    firstName: string = 'FirstName',
+    lastName: string = 'lastName',
+    zipCode: string = '12345'
+  ) {
     await this.firstNameField.fill(firstName);
     await this.lastNameField.fill(lastName);
     await this.zipCodeField.fill(zipCode);

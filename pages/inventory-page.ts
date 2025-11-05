@@ -1,7 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 import 'dotenv/config';
 
-
 export class InventoryPage {
   page: Page;
   addBackpack: Locator;
@@ -16,16 +15,14 @@ export class InventoryPage {
     this.addBikeLight = page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]');
     this.addTshirt = page.locator('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]');
   }
-//TODO: implement generic add/remove functions with parameters
+  //TODO: implement generic add/remove functions with parameters
   async addItemsToBasket() {
-    
     await this.addBikeLight.click();
     await this.addTshirt.click();
     await this.addBackpack.click();
   }
 
-   async removeItemFromBasket() {
+  async removeItemFromBasket() {
     await this.removeBackpack.click();
-
   }
 }
