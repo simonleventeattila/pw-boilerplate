@@ -2,15 +2,14 @@ import { test, expect } from '../../base';
 
 const baseUrl = 'https://www.saucedemo.com/';
 
-test.describe('Add to cart test', () => {
+test.describe('Add products to cart tests', () => {
   test.beforeEach(async ({ page, loginPage }) => {
     await page.goto(`${baseUrl}`);
     await loginPage.doLogin();
   });
 
   test('Add to cart test ', async ({ page, loginPage }) => {
-    await loginPage.doLogin();
-    await expect(page.locator('[data-test="title"]')).toBeVisible();
+    await expect(page.locator('[data-test="title"]')).toContainText('Products');
   });
 
   test('Login and logout', async ({ page, loginPage }) => {
