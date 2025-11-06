@@ -4,7 +4,7 @@ import { validateSchemaZod } from 'playwright-schema-validator';
 
 const baseUrl = 'https://api.practicesoftwaretesting.com';
 
-test.describe('Get verb tests', () => {
+test.describe('GET verb tests', () => {
   let dataId = '';
   test('Get products test', async ({ request, page }) => {
     const response = await request.get(`${baseUrl}/products`);
