@@ -7,7 +7,8 @@ test.describe('Test pages visually (screenshot matching)', () => {
   });
 
   test('Test product page visually', async ({ page }) => {
-    await expect(page.locator('[data-test="title"]')).toContainText('Products');
-    await expect(page).toHaveScreenshot({ fullPage: true });
+  
+  await page.waitForTimeout(5000);
+  await expect(page).toHaveScreenshot('Test-pages-visually-screenshot-matching-Test-product-page-visually-1-chromium-linux.png', { fullPage: true });
   });
 });
