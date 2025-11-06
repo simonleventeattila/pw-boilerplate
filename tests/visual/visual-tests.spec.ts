@@ -9,6 +9,6 @@ test.describe('Test pages visually (screenshot matching)', () => {
   test('Test product page visually', async ({ page }) => {
   
   await page.waitForTimeout(5000);
-  await expect(page).toHaveScreenshot('Test-pages-visually-screenshot-matching-Test-product-page-visually-1-chromium-linux.png', { fullPage: true });
+  await expect(page).toHaveScreenshot('inventory.png', { fullPage: true });
   });
 });
