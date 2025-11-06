@@ -6,7 +6,7 @@ test.describe('Test pages visually (screenshot matching)', () => {
     await loginPage.doLogin();
   });
 
-  test.fail('Test product page visually', async ({ page }) => {
+  test('Test product page visually', async ({ page }) => {
     await expect(page.locator('[data-test="title"]')).toContainText('Products');
     await expect(page).toHaveScreenshot({ fullPage: true });
   });
