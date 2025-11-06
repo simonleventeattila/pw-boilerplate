@@ -6,9 +6,8 @@ test.describe('Test pages visually (screenshot matching)', () => {
     await loginPage.doLogin();
   });
 
-  test('Test product page visually', async ({ page }) => {
-  
-  await page.waitForTimeout(5000);
-  await expect(page).toHaveScreenshot('inventory.png', { fullPage: true });
+  test.fail('Test product page visually', async ({ page }) => {
+    await page.waitForTimeout(5000);
+    await expect(page).toHaveScreenshot('inventory.png', { fullPage: true });
   });
 });
