@@ -1,14 +1,16 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, master]
+    branches: [main, master,fix/ci-visual-testing]
   pull_request:
-    branches: [main, master]
+    branches: [main, master,fix/ci-visual-testing]
 
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble      
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
