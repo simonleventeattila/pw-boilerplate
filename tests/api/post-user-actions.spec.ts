@@ -1,14 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { getProductsSchema } from '../../data/schema/get-products-schema';
-import { validateSchemaZod } from 'playwright-schema-validator';
 const chance = require('chance').Chance();
 
 const baseUrl = 'https://api.practicesoftwaretesting.com';
 let jwtToken = '';
-
+let emailAddress = chance.email();
 test.describe('User actions tests', () => {
-  let dataId = '';
-  test('Register new user new user', async ({ request, page }) => {
+  test('Register new user', async ({ request }) => {
     const requestBody = {
       first_name: 'John',
       last_name: 'Doe',
@@ -22,7 +19,7 @@ test.describe('User actions tests', () => {
       phone: '0987654321',
       dob: '1970-01-01',
       password: 'SuperSecurwee@123',
-      email: chance.email(),
+      email: emailAddress,
     };
 
     const response = await request.post(`${baseUrl}/users/register`, {
@@ -33,13 +30,31 @@ test.describe('User actions tests', () => {
     expect(respBody).toHaveProperty('id');
   });
 
-  test('Get product', async ({ request, page }) => {
-    const response = await request.get(`${baseUrl}/products/${dataId}`);
+  test('Login user', async ({ request }) => {
+    const requestBody = {
+      password: 'SuperSecurwee@123',
+      email: emailAddress,
+    };
+
+    const response = await request.post(`${baseUrl}/users/login`, {
+      data: requestBody,
+    });
+    const respBody = await response.json();
+    jwtToken = respBody.access_token;
+    expect(response.status()).toBe(200);
+    expect(respBody.token_type).toBe('bearer');
+  });
+
+  test('Get user information', async ({ request }) => {
+    const response = await request.get(`${baseUrl}/users/me`, {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+
     const respBody = await response.json();
 
     expect(response.status()).toBe(200);
-    expect(respBody.name).toBe('Combination Pliers');
-    expect(typeof respBody.price).toBe('number');
-    expect(typeof respBody.price).toBeFalsy;
+    expect(respBody.first_name).toBe('John');
   });
 });
