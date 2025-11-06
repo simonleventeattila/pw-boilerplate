@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "format": "npx prettier --write .",
-    "test": "npx cross-env BASE_URL='https://www.saucedemo.com/' playwright test --headed",
+    "test": "npx cross-env BASE_URL='https://www.saucedemo.com/' playwright test",
     "set-base-images:": "npx playwright test --update-snapshots",
     "test:headed": "npx playwright test --headed",
     "test:single:thread": "npx playwright test --headed --workers=1",

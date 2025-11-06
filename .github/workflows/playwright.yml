@@ -1,12 +1,12 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, master,fix/ci-visual-testing]
+    branches: [main, master,]
   pull_request:
-    branches: [main, master,fix/ci-visual-testing]
+    branches: [main, master,]
 
 jobs:
-  test:
+  e2e_test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
@@ -21,7 +21,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx cross-env BASE_URL='https://www.saucedemo.com/' playwright test --config=playwright.config.ts
         env:
           USER_NAME: ${{ secrets.USER_NAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
@@ -31,3 +31,62 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+  api-tests:
+    name: API tests
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble    
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+      - name: Run API tests
+        run: npx cross-env BASE_URL='https://api.practicesoftwaretesting.com' playwright test --config=pw.api.config.ts
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-api
+          path: playwright-report/
+          retention-days: 30   
+
+  visual-tests:
+    name: Visual tests
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+      - name: Run Visual tests
+        run: npx cross-env BASE_URL='https://www.saucedemo.com/' playwright test --config=pw.visual.config.ts
+        env:
+          USER_NAME: ${{ secrets.USER_NAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-visual
+          path: playwright-report/
+          retention-days: 30
+
+  a11y-tests:
+    name: A11y tests
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble      
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+      - name: Run A11y tests
+        run: npx cross-env BASE_URL='https://www.saucedemo.com/' playwright test --config=pw.a11y.config.ts
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-a11y
+          path: playwright-report/
+          retention-days: 30                
